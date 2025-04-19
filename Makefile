@@ -1,40 +1,24 @@
+# Makefile
 # Variables
-PROJECT_NAME=product-api
-SERVICE=apis
+PROJECT_NAME=robin
+SERVICE=product_api
 
 # ---------------------------
 # 🐳 Docker
 # ---------------------------
 
 up:
-	docker-compose up --build
+	docker-compose up -d
+
+build:
+	docker-compose build
+
+start: build up
 
 down:
 	docker-compose down
 
 restart: down up
-
-# ---------------------------
-# 🧪 Tests (à compléter plus tard)
-# ---------------------------
-
-test:
-	poetry run pytest
-
-# ---------------------------
-# 🔍 Linting
-# ---------------------------
-
-lint:
-	poetry run flake8 apis
-
-# ---------------------------
-# 🧹 Nettoyage
-# ---------------------------
-
-clean:
-	find . -type d -name '__pycache__' -exec rm -r {} +
-	rm -rf .mypy_cache .pytest_cache *.pyc *.pyo *.pyd .coverage htmlcov
 
 # ---------------------------
 # 🧰 Dev utils
@@ -46,15 +30,5 @@ shell:
 logs:
 	docker-compose logs -f ${SERVICE}
 
-# ---------------------------
-# 📦 Packaging / install
-# ---------------------------
-
-install:
-	poetry install
-
-update:
-	poetry update
-
-lock:
-	poetry lock
+py:
+	docker exec -it $$(docker ps -qf "name=${SERVICE}") poetry run python

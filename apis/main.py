@@ -1,29 +1,31 @@
-# apis\main.py
-from apis.schemas.product import Product, ProductInput, ProductTranslation
+# main.py
 import strawberry
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from strawberry.fastapi import GraphQLRouter
-from typing import List, Optional
 
-from apis.resolvers.product import ProductQuery, ProductMutation
 from services.db.memory import InMemoryProductRepository
-from usecases.product import create as creatr_usecase, list as list_usecase
+from services.embeddings.labse_embedder import EmbeddingService
+from exposers.resolvers.product import ProductQuery, ProductMutation
 
-# Instanciation unique du repo
 repository = InMemoryProductRepository()
+embedder = EmbeddingService()
 
-# Fusion des resolvers
 @strawberry.type
-class Query(ProductQuery): ...
+class Query(ProductQuery):
+    @strawberry.field
+    def hello(self) -> str:
+        return "Hello, GraphQL ✨"
+
 @strawberry.type
-class Mutation(ProductMutation): ...
+class Mutation(ProductMutation):
+    pass
 
 schema = strawberry.Schema(query=Query, mutation=Mutation)
 
-graphql_app = GraphQLRouter(schema, context_getter=lambda _: {"repository": repository})
-    
-schema = strawberry.Schema(query=Query, mutation=Mutation)
-graphql_app = GraphQLRouter(schema)
+async def get_context(request: Request):
+    return {"repository": repository, "embedder": embedder}
+
+graphql_app = GraphQLRouter(schema, context_getter=get_context)
 
 app = FastAPI()
 app.include_router(graphql_app, prefix="/graphql")
