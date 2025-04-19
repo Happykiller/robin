@@ -1,0 +1,119 @@
+# 🧠 Product API POC
+
+Une API Python FastAPI + GraphQL construite selon une architecture hexagonale (Clean Architecture) pour gérer un catalogue de produits multilingue.
+
+---
+
+## 🛠️ Stack technique
+
+- 🔥 **FastAPI** pour le serveur web
+- 🍓 **Strawberry GraphQL** pour l'API GraphQL
+- 🐍 **Python 3.11** avec **Poetry**
+- 🧱 Architecture **Hexagonale**
+- 🧪 Tests (à venir)
+- 🐳 Docker et Docker Compose
+
+---
+
+## 📁 Structure
+
+```
+apis/
+├── apis/
+│   ├── app.py                  # Initialisation FastAPI + routes
+│   ├── resolvers/              # GraphQL resolvers (Query/Mutation)
+│   └── schemas/                # Types GraphQL
+├── interfaces/                 # Ports (interfaces métiers)
+├── services/                   # Adaptateurs (infrastructure)
+├── usecases/                  # Logique métier (application layer)
+├── main.py                     # Point d'entrée (uvicorn)
+```
+
+---
+
+## 🚀 Lancer le projet
+
+### 1. Prérequis
+
+- Docker
+- Docker Compose
+- (Optionnel) Python 3.11 + Poetry en local
+
+### 2. Démarrage
+
+```bash
+make up
+```
+
+> L'API sera disponible sur [http://localhost:8000/graphql](http://localhost:8000/graphql)
+
+### 3. Requête test `.http`
+
+```http
+POST http://localhost:8000/graphql
+Content-Type: application/json
+
+{
+  "query": "query { products(locale: \"fr\") { code translation { title description } } }"
+}
+```
+
+---
+
+## 🧪 Exemples GraphQL
+
+### ➕ Créer un produit
+
+```graphql
+mutation createProduct($product: ProductInput!) {
+  createProduct(product: $product)
+}
+```
+
+```json
+{
+  "product": {
+    "code": "P001",
+    "translations": [
+      { "locale": "fr", "translation": { "title": "Produit FR", "description": "Description FR" }},
+      { "locale": "en", "translation": { "title": "Product EN", "description": "Description EN" }}
+    ]
+  }
+}
+```
+
+---
+
+## 🔧 Makefile
+
+Quelques commandes utiles :
+
+```bash
+make up         # Lancer l'app
+make down       # Stopper
+make restart    # Redémarrer proprement
+make shell      # Entrer dans le conteneur
+make logs       # Logs live
+make clean      # Nettoyage
+```
+
+---
+
+## 📦 Roadmap
+
+- [x] Création / Listing produit multilingue
+- [ ] Fallback locale automatique
+- [ ] Implémentation `MySQLProductRepository`
+- [ ] Embeddings + indexation ElasticSearch
+- [ ] Recherche multilingue intelligente
+
+---
+
+## 👤 Auteur
+
+Fabrice, Lead Tech & Agiliste  
+📍 Grenoble  
+❤️ Basket US, spatial, Hearthstone Battleground  
+🚗 Électrique – mais API rapide 😉
+
+---
