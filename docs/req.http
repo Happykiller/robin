@@ -72,5 +72,19 @@ POST http://localhost:8000/graphql
 Content-Type: application/json
 
 {
-  "query": "query { products(locale: \"fr\") { code translation { title description } } }"
+  "query": "query { products(locale: \"fr\", limit: 25) { code translation { title description } } }"
+}
+
+
+### Search
+POST http://localhost:8000/graphql
+Content-Type: application/json
+
+{
+  "query": "query search($text: String!, $locale: String!, $limit: Int) { searchProducts(text: $text, locale: $locale, limit: $limit) { code translation { title description } score } }",
+  "variables": {
+    "text": "jolie vélo bleu",
+    "locale": "fr",
+    "limit": 10
+  }
 }

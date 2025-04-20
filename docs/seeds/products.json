@@ -6,14 +6,14 @@
         "locale": "fr",
         "translation": {
           "title": "Vélo Rouge",
-          "description": "Un vélo rouge rapide"
+          "description": "Un vélo rouge vif, parfait pour les balades en ville ou à la campagne. Léger et rapide, il vous accompagnera partout."
         }
       },
       {
         "locale": "en",
         "translation": {
           "title": "Red Bike",
-          "description": "A fast red bicycle"
+          "description": "A bright red bicycle ideal for urban commuting or countryside rides. Lightweight and agile."
         }
       }
     ]
@@ -25,7 +25,14 @@
         "locale": "en",
         "translation": {
           "title": "Blue Helmet",
-          "description": "A safe blue helmet"
+          "description": "A reliable blue helmet with reinforced padding, ensuring safety during high-speed rides."
+        }
+      },
+      {
+        "locale": "fr",
+        "translation": {
+          "title": "Casque Bleu",
+          "description": "Un casque bleu robuste avec rembourrage renforcé, idéal pour les trajets à grande vitesse."
         }
       }
     ]
@@ -37,7 +44,320 @@
         "locale": "es",
         "translation": {
           "title": "Camiseta",
-          "description": "Camiseta deportiva de algodón"
+          "description": "Camiseta deportiva de algodón transpirable, ideal para entrenamientos intensos."
+        }
+      }
+    ]
+  },
+  {
+    "code": "P004",
+    "translations": [
+      {
+        "locale": "en",
+        "translation": {
+          "title": "Mountain Backpack",
+          "description": "Spacious backpack with waterproof lining and multiple compartments for hiking."
+        }
+      },
+      {
+        "locale": "fr",
+        "translation": {
+          "title": "Sac à Dos Montagne",
+          "description": "Sac à dos spacieux avec revêtement imperméable, parfait pour la randonnée."
+        }
+      },
+      {
+        "locale": "it",
+        "translation": {
+          "title": "Zaino da Montagna",
+          "description": "Zaino capiente con rivestimento impermeabile e scomparti multipli per escursioni."
+        }
+      }
+    ]
+  },
+  {
+    "code": "P005",
+    "translations": [
+      {
+        "locale": "en",
+        "translation": {
+          "title": "Wireless Earbuds",
+          "description": "Compact wireless earbuds with noise cancellation and long battery life. Ref: EAR-WL99"
+        }
+      },
+      {
+        "locale": "fr",
+        "translation": {
+          "title": "Écouteurs sans Fil",
+          "description": "Écouteurs compacts avec réduction de bruit active et autonomie prolongée. Code : EC99WL"
+        }
+      }
+    ]
+  },
+  {
+    "code": "P006",
+    "translations": [
+      {
+        "locale": "fr",
+        "translation": {
+          "title": "Bouteille Isotherme",
+          "description": "Bouteille en acier inoxydable conservant vos boissons chaudes ou froides pendant 12 heures."
+        }
+      }
+    ]
+  },
+  {
+    "code": "P007",
+    "translations": [
+      {
+        "locale": "en",
+        "translation": {
+          "title": "Smart Watch",
+          "description": "Modern smartwatch with fitness tracking, GPS and heart-rate monitor."
+        }
+      },
+      {
+        "locale": "es",
+        "translation": {
+          "title": "Reloj Inteligente",
+          "description": "Reloj moderno con seguimiento de actividad, GPS y pulsómetro."
+        }
+      }
+    ]
+  },
+  {
+    "code": "P008",
+    "translations": [
+      {
+        "locale": "en",
+        "translation": {
+          "title": "Camping Tent",
+          "description": "Four-person waterproof tent with UV protection and quick setup system."
+        }
+      }
+    ]
+  },
+  {
+    "code": "P009",
+    "translations": [
+      {
+        "locale": "fr",
+        "translation": {
+          "title": "Couteau Multifonction",
+          "description": "Outil tout-en-un avec lame, tournevis, ouvre-bouteille et ciseaux."
+        }
+      }
+    ]
+  },
+  {
+    "code": "P010",
+    "translations": [
+      {
+        "locale": "it",
+        "translation": {
+          "title": "Scarpe da Corsa",
+          "description": "Scarpe leggere e traspiranti per allenamenti quotidiani."
+        }
+      },
+      {
+        "locale": "en",
+        "translation": {
+          "title": "Running Shoes RNSX-78",
+          "description": "Lightweight breathable shoes ideal for daily jogging."
+        }
+      }
+    ]
+  },
+  {
+    "code": "P011",
+    "translations": [
+      {
+        "locale": "en",
+        "translation": {
+          "title": "Yoga Mat",
+          "description": "Non-slip mat with extra cushioning for your yoga or pilates sessions."
+        }
+      }
+    ]
+  },
+  {
+    "code": "P012",
+    "translations": [
+      {
+        "locale": "fr",
+        "translation": {
+          "title": "Lampe Frontale",
+          "description": "Lampe LED puissante avec réglage d’intensité, parfaite pour le trail nocturne."
+        }
+      },
+      {
+        "locale": "es",
+        "translation": {
+          "title": "Linterna Frontal",
+          "description": "Linterna LED con varios niveles de intensidad, ideal para correr de noche."
+        }
+      }
+    ]
+  },
+  {
+    "code": "P013",
+    "translations": [
+      {
+        "locale": "en",
+        "translation": {
+          "title": "Trekking Poles",
+          "description": "Durable aluminium poles with adjustable height and shock absorption."
+        }
+      }
+    ]
+  },
+  {
+    "code": "P014",
+    "translations": [
+      {
+        "locale": "fr",
+        "translation": {
+          "title": "Shorts de Sport",
+          "description": "Shorts confortables avec tissu respirant pour tous types d’exercices. Réf : SHORT55"
+        }
+      }
+    ]
+  },
+  {
+    "code": "P015",
+    "translations": [
+      {
+        "locale": "it",
+        "translation": {
+          "title": "Borraccia",
+          "description": "Bottiglia ecologica in alluminio, ideale per escursioni e sport."
+        }
+      }
+    ]
+  },
+  {
+    "code": "P016",
+    "translations": [
+      {
+        "locale": "en",
+        "translation": {
+          "title": "Cycling Gloves",
+          "description": "Padded gloves to enhance grip and reduce vibration on long rides."
+        }
+      }
+    ]
+  },
+  {
+    "code": "P017",
+    "translations": [
+      {
+        "locale": "fr",
+        "translation": {
+          "title": "Gants Vélo GV42",
+          "description": "Gants rembourrés pour améliorer l’adhérence et limiter les vibrations."
+        }
+      }
+    ]
+  },
+  {
+    "code": "P018",
+    "translations": [
+      {
+        "locale": "en",
+        "translation": {
+          "title": "Sports Cap",
+          "description": "Breathable cap to protect from sun and sweat during workouts."
+        }
+      },
+      {
+        "locale": "fr",
+        "translation": {
+          "title": "Casquette de Sport",
+          "description": "Casquette légère et respirante pour se protéger du soleil."
+        }
+      }
+    ]
+  },
+  {
+    "code": "P019",
+    "translations": [
+      {
+        "locale": "es",
+        "translation": {
+          "title": "Sudadera Deportiva",
+          "description": "Cómoda y cálida, ideal para antes y después del ejercicio."
+        }
+      }
+    ]
+  },
+  {
+    "code": "P020",
+    "translations": [
+      {
+        "locale": "en",
+        "translation": {
+          "title": "Fitness Tracker",
+          "description": "Track your daily activity, calories, steps and sleep with precision."
+        }
+      }
+    ]
+  },
+  {
+    "code": "P021",
+    "translations": [
+      {
+        "locale": "fr",
+        "translation": {
+          "title": "Tapis de course pliable",
+          "description": "Idéal pour les petits espaces. Facile à ranger avec fonctions connectées."
+        }
+      }
+    ]
+  },
+  {
+    "code": "P022",
+    "translations": [
+      {
+        "locale": "it",
+        "translation": {
+          "title": "Occhiali da Sole Sportivi",
+          "description": "Protezione UV e montatura leggera, adatti a tutte le attività all’aperto."
+        }
+      }
+    ]
+  },
+  {
+    "code": "P023",
+    "translations": [
+      {
+        "locale": "fr",
+        "translation": {
+          "title": "Gilet Réfléchissant",
+          "description": "Pour la course ou le vélo de nuit. Haute visibilité garantie. Code produit : GREF01"
+        }
+      }
+    ]
+  },
+  {
+    "code": "P024",
+    "translations": [
+      {
+        "locale": "en",
+        "translation": {
+          "title": "Resistance Bands Set",
+          "description": "5 levels of resistance for progressive muscle training at home."
+        }
+      }
+    ]
+  },
+  {
+    "code": "P025",
+    "translations": [
+      {
+        "locale": "es",
+        "translation": {
+          "title": "Guantes de entrenamiento",
+          "description": "Diseñados para levantar pesas con mayor comodidad y protección."
         }
       }
     ]

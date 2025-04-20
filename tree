@@ -1,0 +1,43 @@
+admin@Happykiller-11-PC:~/robin$ tree
+.
+├── apis
+│   ├── Dockerfile
+│   ├── domains
+│   │   └── product.py
+│   ├── exposers
+│   │   ├── resolvers
+│   │   │   └── product.py
+│   │   └── schemas
+│   │       └── product.py
+│   ├── interfaces
+│   │   └── repositories
+│   │       └── product.py
+│   ├── main.py
+│   ├── Makefile
+│   ├── poetry.lock
+│   ├── pyproject.toml
+│   ├── seed.py
+│   ├── services
+│   │   ├── db
+│   │   │   └── memory.py
+│   │   ├── embeddings
+│   │   │   ├── labse_embedder.py
+│   │   │   └── similarity.py
+│   │   └── i18n
+│   │       └── translation.py
+│   └── usecases
+│       ├── i18n
+│       │   └── resolve.py
+│       └── product
+│           ├── create.py
+│           ├── list.py
+│           └── search.py
+├── docker-compose.yml
+├── docs
+│   ├── req.http
+│   └── seeds
+│       └── products.json
+├── Makefile
+└── README
+
+16 directories, 23 files

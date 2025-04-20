@@ -1,17 +1,17 @@
 # 🧠 Product API POC
 
-Une API Python FastAPI + GraphQL construite selon une architecture hexagonale (Clean Architecture) pour gérer un catalogue de produits multilingue.
+Une API FastAPI + GraphQL pour gérer un catalogue de produits multilingue avec recherche sémantique et fallback automatique.
 
 ---
 
 ## 🛠️ Stack technique
 
-- 🔥 **FastAPI** pour le serveur web
-- 🍓 **Strawberry GraphQL** pour l'API GraphQL
-- 🐍 **Python 3.11** avec **Poetry**
-- 🧱 Architecture **Hexagonale**
-- 🧪 Tests (à venir)
-- 🐳 Docker et Docker Compose
+- 🔥 FastAPI + Strawberry GraphQL
+- 🧱 Architecture Hexagonale (Domain, UseCases, Interfaces, Services, Exposers)
+- 🤗 Transformers (LaBSE pour embeddings + MarianMT pour traduction)
+- 🐍 Python 3.11 avec Poetry
+- 🧪 Tests en cours
+- 🐳 Docker + Docker Compose
 
 ---
 
@@ -19,14 +19,20 @@ Une API Python FastAPI + GraphQL construite selon une architecture hexagonale (C
 
 ```
 apis/
-├── apis/
-│   ├── app.py                  # Initialisation FastAPI + routes
-│   ├── resolvers/              # GraphQL resolvers (Query/Mutation)
-│   └── schemas/                # Types GraphQL
-├── interfaces/                 # Ports (interfaces métiers)
-├── services/                   # Adaptateurs (infrastructure)
-├── usecases/                  # Logique métier (application layer)
-├── main.py                     # Point d'entrée (uvicorn)
+├── domains/                     # Entités métiers (ProductInternal)
+├── usecases/
+│   ├── product/                 # create, list, search
+│   └── i18n/                    # resolve (fallback)
+├── services/
+│   ├── embeddings/             # LaBSE + cosine similarity
+│   ├── i18n/                   # TranslationService (MarianMT)
+│   └── db/                     # InMemory repo
+├── interfaces/repositories/    # Port abstrait
+├── exposers/
+│   ├── resolvers/              # GraphQL Queries / Mutations
+│   └── schemas/                # GraphQL types et inputs
+├── main.py                     # Entrée FastAPI + schema GraphQL
+├── seed.py                     # Chargement de données via GraphQL
 ```
 
 ---
@@ -35,85 +41,68 @@ apis/
 
 ### 1. Prérequis
 
-- Docker
-- Docker Compose
-- (Optionnel) Python 3.11 + Poetry en local
+- Docker & Docker Compose
+- (Optionnel) Python 3.11 + Poetry
 
-### 2. Démarrage
+### 2. Lancement
 
 ```bash
-make up
+docker-compose up --build
 ```
 
-> L'API sera disponible sur [http://localhost:8000/graphql](http://localhost:8000/graphql)
-
-### 3. Requête test `.http`
-
-```http
-POST http://localhost:8000/graphql
-Content-Type: application/json
-
-{
-  "query": "query { products(locale: \"fr\") { code translation { title description } } }"
-}
-```
+Accessible via : http://localhost:8000/graphql
 
 ---
 
-## 🧪 Exemples GraphQL
+## ✨ Fonctionnalités
 
-### ➕ Créer un produit
+### ✅ Création de produit (multilingue)
+
+- Code produit unique
+- Traductions multiples (title + description)
+- Embedding des champs selon la langue prioritaire
+
+### 🔍 Recherche sémantique
+
+- Basée sur LaBSE + Similarité Cosinus
+- Recherche sur titre puis fallback sur description
+- Seuil de similarité configurable (0.7)
+- Résultats enrichis d’un champ `score`
+
+### 🌍 Fallback de traduction automatique
+
+- Si la locale demandée n’est pas présente :
+  - Recherche une langue prioritaire disponible
+  - Utilise MarianMT pour traduire dynamiquement
+
+---
+
+## 🧪 Exemple de requête GraphQL
 
 ```graphql
-mutation createProduct($product: ProductInput!) {
-  createProduct(product: $product)
-}
-```
-
-```json
-{
-  "product": {
-    "code": "P001",
-    "translations": [
-      { "locale": "fr", "translation": { "title": "Produit FR", "description": "Description FR" }},
-      { "locale": "en", "translation": { "title": "Product EN", "description": "Description EN" }}
-    ]
+query {
+  searchProducts(text: "gilet GREF01", locale: "fr") {
+    code
+    score
+    translation {
+      title
+      description
+    }
   }
 }
 ```
 
 ---
 
-## 🔧 Makefile
+## 📦 Données de test
 
-Quelques commandes utiles :
-
-```bash
-make up         # Lancer l'app
-make down       # Stopper
-make restart    # Redémarrer proprement
-make shell      # Entrer dans le conteneur
-make logs       # Logs live
-make clean      # Nettoyage
-```
+Un script de seed (`seed.py`) permet de charger un jeu de données multilingues via mutation GraphQL.
 
 ---
 
-## 📦 Roadmap
+## 🔮 À venir
 
-- [x] Création / Listing produit multilingue
-- [ ] Fallback locale automatique
-- [ ] Implémentation `MySQLProductRepository`
-- [ ] Embeddings + indexation ElasticSearch
-- [ ] Recherche multilingue intelligente
-
----
-
-## 👤 Auteur
-
-Fabrice, Lead Tech & Agiliste  
-📍 Grenoble  
-❤️ Basket US, spatial, Hearthstone Battleground  
-🚗 Électrique – mais API rapide 😉
-
----
+- Tests automatisés
+- Indexation vectorielle (Faiss / Qdrant)
+- Authentification
+- Support de base SQL

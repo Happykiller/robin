@@ -11,6 +11,7 @@ class ProductTranslation:
 class Product:
     code: str
     translation: Optional[ProductTranslation]
+    score: Optional[float] = None
 
 @strawberry.input
 class ProductTranslationInput:
