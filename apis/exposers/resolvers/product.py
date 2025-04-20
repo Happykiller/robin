@@ -2,6 +2,7 @@
 import strawberry
 from typing import List
 
+from services.i18n.translation import TranslationService
 from usecases.product import create, list as list_usecase
 from exposers.schemas.product import Product, ProductInput
 from interfaces.repositories.product import ProductRepository
@@ -12,8 +13,8 @@ class ProductQuery:
     @strawberry.field
     def products(self, locale: str, info) -> List[Product]:
         repo: ProductRepository = info.context["repository"]
-        embedder: EmbeddingService = info.context["embedder"]
-        return list_usecase.list_products(locale, repo, embedder)
+        translator: TranslationService = info.context["translator"]
+        return list_usecase.list_products(locale, repo, translator)
 
 @strawberry.type
 class ProductMutation:

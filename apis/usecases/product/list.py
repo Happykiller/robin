@@ -1,26 +1,62 @@
 # apis\usecases\product\list.py
-from typing import List
+import logging
+from typing import List, Optional
 
+from services.i18n.translation import TranslationService
 from interfaces.repositories.product import ProductRepository
-from services.embeddings.labse_embedder import EmbeddingService
 from exposers.schemas.product import Product, ProductTranslation
 
-def list_products(locale: str, repository: ProductRepository, embedder: EmbeddingService) -> List[Product]:
-    raw_products = repository.list(locale)
+logger = logging.getLogger(__name__)
 
-    result = []
+def list_products(locale: str, repository: ProductRepository, translator: TranslationService) -> List[Product]:
+    raw_products = repository.list(locale)
+    
+    raw_products_cleaned = [
+        {
+            "code": p["code"],
+            "translation": p.get("translation"),
+            "translations": p.get("translations", [])
+        }
+        for p in raw_products
+    ]
+    
+    logger.info(f"[list_products] Requested locale: {locale}")
+    logger.info(f"[list_products] Raw products: {raw_products_cleaned}")
+    
+    products = []
 
     for p in raw_products:
-        trans_entry = p.get("translation") or {}
-        inner_trans = trans_entry.get("translation") or {}
+        # ⚠️ On récupère bien l'objet interne "translation"
+        translation_entry = p["translation"]
+        translation_data = None
 
-        title = inner_trans.get("title")
-        description = inner_trans.get("description")
+        if translation_entry and "translation" in translation_entry:
+            translation_data = translation_entry["translation"]
+        else:
+            # fallback via "en"
+            en_translation = next(
+                (t["translation"] for t in p["translations"] if t["locale"] == "en"),
+                None
+            )
+            if en_translation and "title" in en_translation and "description" in en_translation:
+                title = translator.translate(en_translation["title"], src="en", dest=locale)
+                description = translator.translate(en_translation["description"], src="en", dest=locale)
+                translation_data = {"title": title, "description": description}
 
-        result.append(Product(
-            code=p["code"],
-            translation=ProductTranslation(title=title, description=description)
-            if title and description else None
-        ))
+        products.append(
+            Product(
+                code=p["code"],
+                translation=build_safe_translation(translation_data)
+            )
+        )
 
-    return result
+    return products
+
+
+def build_safe_translation(translation: Optional[dict]) -> Optional[ProductTranslation]:
+    if translation and "title" in translation and "description" in translation:
+        return ProductTranslation(
+            title=translation["title"],
+            description=translation["description"]
+        )
+    return None

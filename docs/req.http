@@ -44,6 +44,28 @@ Content-Type: application/json
   }
 }
 
+### Créer un produit sans fr
+POST http://localhost:8000/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation createProduct($product: ProductInput!) { createProduct(product: $product) }",
+  "variables": {
+    "product": {
+      "code": "P999",
+      "translations": [
+        {
+          "locale": "en",
+          "translation": {
+            "title": "Green Bike",
+            "description": "A fast green bicycle"
+          }
+        }
+      ]
+    }
+  }
+}
+
 
 ### Lister les produits en français
 POST http://localhost:8000/graphql

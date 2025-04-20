@@ -3,7 +3,6 @@ name = "robin-api"
 version = "0.1.0"
 description = "Multilingual product API with FastAPI + Strawberry"
 authors = ["Toi <toi@exemple.com>"]
-packages = [{ include = "app" }]
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -17,6 +16,8 @@ python-dotenv = "^1.0.1"
 transformers = "^4.39.3"
 torch = "^2.2.2"
 huggingface_hub = {extras = ["hf_xet"], version = "^0.23.1"}
+sentencepiece = "^0.2.0"
+sacremoses = "^0.1.1"
 
 [tool.poetry.group.dev.dependencies]
 rich = "^14.0.0"

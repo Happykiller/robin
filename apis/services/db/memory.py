@@ -24,6 +24,7 @@ class InMemoryProductRepository(ProductRepository):
             results.append({
                 "code": product.code,
                 "translation": translation,
+                "translations": product.translations,
                 "embedding_title": product.embedding_title,
                 "embedding_description": product.embedding_description,
             })

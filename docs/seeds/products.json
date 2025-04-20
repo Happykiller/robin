@@ -1,0 +1,45 @@
+[
+  {
+    "code": "P001",
+    "translations": [
+      {
+        "locale": "fr",
+        "translation": {
+          "title": "Vélo Rouge",
+          "description": "Un vélo rouge rapide"
+        }
+      },
+      {
+        "locale": "en",
+        "translation": {
+          "title": "Red Bike",
+          "description": "A fast red bicycle"
+        }
+      }
+    ]
+  },
+  {
+    "code": "P002",
+    "translations": [
+      {
+        "locale": "en",
+        "translation": {
+          "title": "Blue Helmet",
+          "description": "A safe blue helmet"
+        }
+      }
+    ]
+  },
+  {
+    "code": "P003",
+    "translations": [
+      {
+        "locale": "es",
+        "translation": {
+          "title": "Camiseta",
+          "description": "Camiseta deportiva de algodón"
+        }
+      }
+    ]
+  }
+]

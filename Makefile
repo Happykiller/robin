@@ -8,7 +8,7 @@ SERVICE=product_api
 # ---------------------------
 
 up:
-	docker-compose up -d
+	docker-compose up
 
 build:
 	docker-compose build
@@ -32,3 +32,6 @@ logs:
 
 py:
 	docker exec -it $$(docker ps -qf "name=${SERVICE}") poetry run python
+
+seed:
+	docker exec -it $(docker ps -qf "name=product_api") poetry run python seed.py
