@@ -34,12 +34,3 @@ def list_products(locale: str, repository: ProductRepository, translator: Transl
     if limit:
             return products[:limit]
     return products
-
-
-def build_safe_translation(translation: Optional[dict]) -> Optional[ProductTranslation]:
-    if translation and "title" in translation and "description" in translation:
-        return ProductTranslation(
-            title=translation["title"],
-            description=translation["description"]
-        )
-    return None

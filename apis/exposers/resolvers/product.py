@@ -30,4 +30,5 @@ class ProductMutation:
     def create_product(self, product: ProductInput, info) -> bool:
         repo: ProductRepository = info.context["repository"]
         embedder: EmbeddingService = info.context["embedder"]
-        return create.create_product(product, repo, embedder)
+        translator: TranslationService = info.context["translator"]
+        return create.create_product(product, repo, embedder, translator)
